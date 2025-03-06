@@ -1,0 +1,26 @@
+function addPhrase() {
+    let input = document.getElementById("phraseInput");
+    let phraseList = document.getElementById("phraseList");
+
+    if (input.value.trim() !== "") {
+        let li = document.createElement("li");
+        li.textContent = input.value;
+        phraseList.appendChild(li);
+        input.value = "";
+    }
+}
+
+document.getElementById("imageUpload").addEventListener("change", function(event) {
+    let photos = document.getElementById("photos");
+    let file = event.target.files[0];
+
+    if (file) {
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            let img = document.createElement("img");
+            img.src = e.target.result;
+            photos.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+    }
+});
